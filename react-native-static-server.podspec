@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   }
   s.homepage       = package['homepage']
   s.source         = {
-    :git => 'https://github.com/birdofpreyru/react-native-static-server.git',
+    :git => 'https://github.com/dagouzhi/react-native-static-server.git',
     :tag => 'v' + package['version']
   }
 
