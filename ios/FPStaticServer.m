@@ -6,6 +6,22 @@
 
 RCT_EXPORT_MODULE();
 
+NSString* GCDWebServerNormalizePath(NSString* path) {
+  NSMutableArray* components = [[NSMutableArray alloc] init];
+  for (NSString* component in [path componentsSeparatedByString:@"/"]) {
+    if ([component isEqualToString:@".."]) {
+      [components removeLastObject];
+    } else if (component.length && ![component isEqualToString:@"."]) {
+      [components addObject:component];
+    }
+  }
+  if (path.length && ([path characterAtIndex:0] == '/')) {
+    return [@"/" stringByAppendingString:[components componentsJoinedByString:@"/"]];  // Preserve initial slash
+  }
+  return [components componentsJoinedByString:@"/"];
+}
+
+
 - (instancetype)init {
     if((self = [super init])) {
 
